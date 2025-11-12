@@ -5,20 +5,39 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class MotorInitialize {
-    private DcMotor left_drive;
-    private DcMotor right_drive;
+    private DcMotor left_forward_drive;
+    private DcMotor left_backward_drive;
+    private DcMotor right_backward_drive;
+    private DcMotor right_forward_drive;
+    private DcMotor flywheel_drive;
 
     public void init (HardwareMap hwMap){
-        left_drive=hwMap.get(DcMotorEx.class,"left_drive");
-        left_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        right_drive=hwMap.get(DcMotorEx.class,"right_drive");
-        right_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        left_forward_drive=hwMap.get(DcMotorEx.class,"left_forward_drive");
+        left_forward_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        right_forward_drive=hwMap.get(DcMotorEx.class,"right_forward_drive");
+        right_forward_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        left_backward_drive=hwMap.get(DcMotorEx.class,"left_backward_drive");
+        left_backward_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        right_backward_drive=hwMap.get(DcMotorEx.class,"right_backward_drive");
+        right_backward_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+
+
     }
-    public void setLeft_driveSpeed(double speed){
-        left_drive.setPower(speed);
+    public void setLeft_forward_drive(double speed){
+        left_forward_drive.setPower(speed);
+    }
+    public void setRight_forward_drive(double speed) {
+     right_forward_drive.setPower(speed);
+    }
+    public void setLeft_backward_drive(double speed){
+        left_backward_drive.setPower(speed);
+    }
+    public void setRight_backward_drive(double speed){
+        right_backward_drive.setPower(speed);
+    }
+    public void setflywheel_drive(double speed){
+        flywheel_drive.setPower(speed);
     }
 
-    public void setRight_driveSpeed(double speed) {
-     right_drive.setPower(speed);
-    }
 }

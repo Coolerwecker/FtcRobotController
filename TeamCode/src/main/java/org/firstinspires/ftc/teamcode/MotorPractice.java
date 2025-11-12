@@ -14,20 +14,7 @@ public class MotorPractice extends OpMode {
         initialize.init(hardwareMap);
 
     }
-
-    @Override
-    public void loop() {
-        double turn=gamepad1.left_stick_x;
-        double drive=-gamepad1.left_stick_y;
-        double leftpower=drive+turn;
-        double rightpower=drive-turn;
-
-        double max=Math.max(Math.abs(leftpower), Math.abs(rightpower));
-        if (max>1.0){
-            leftpower=leftpower/max;
-            rightpower=rightpower/max;
-        }
-        initialize.setRight_driveSpeed(rightpower);
-        initialize.setLeft_driveSpeed(leftpower);
+    public void loop(){
+        initialize.setLeft_forward_drive(1);
     }
 }
