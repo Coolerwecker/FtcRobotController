@@ -20,13 +20,10 @@ public class TestRobotTeleOp extends OpMode {
 
     // --- NEW --- Loader Servo positions
     // ❗ You MUST tune these values!
-    public static final double LOADER_HOME_POSITION = 0.7; // Retracted
-    public static final double LOADER_PUSH_POSITION = 0.2; // Pushing new ball
+
 
     // --- NEW --- Time constants for the cycle
     public static final double PUSH_TIME_SECONDS = 0.5;   // How long pusher stays out (0.5s)
-    public static final double COOLDOWN_SECONDS = 1.5;    // Your requested 1-2s delay
-    public static final double LOAD_TIME_SECONDS = 0.5;   // How long loader stays out (0.5s)
 
     // --- UPDATED --- Timer and State Machine
     private ElapsedTime cycleTimer = new ElapsedTime();
@@ -35,8 +32,7 @@ public class TestRobotTeleOp extends OpMode {
     private enum ShootingCycleState {
         IDLE,    // Waiting for button
         PUSHING, // Pusher servo is out
-        COOLDOWN,  // Waiting after shot
-        LOADING  // Loader servo is out
+
     }
 
     private ShootingCycleState currentState = ShootingCycleState.IDLE;
@@ -50,7 +46,7 @@ public class TestRobotTeleOp extends OpMode {
 
         // --- UPDATED --- Set BOTH servos to home on init
         servoInitialize.setPusher(PUSHER_HOME_POSITION);
-        servoInitialize.setLoader(LOADER_HOME_POSITION);
+
 
         // Start in IDLE state
         currentState = ShootingCycleState.IDLE;
@@ -118,32 +114,11 @@ public class TestRobotTeleOp extends OpMode {
                     // 2. Reset timer for the cooldown
                     cycleTimer.reset();
                     // 3. Go to cooldown state
-                    currentState = ShootingCycleState.COOLDOWN;
+
                 }
                 break;
 
-            case COOLDOWN:
-                // Wait for your 1.5 second delay
-                if (cycleTimer.seconds() >= COOLDOWN_SECONDS) {
-                    // 1. Activate the loader servo
-                    servoInitialize.setLoader(LOADER_PUSH_POSITION);
-                    // 2. Reset timer for the load time
-                    cycleTimer.reset();
-                    // 3. Go to loading state
-                    currentState = ShootingCycleState.LOADING;
-                }
-                break;
 
-            case LOADING:
-                // Wait for the loader to be out for LOAD_TIME_SECONDS
-                if (cycleTimer.seconds() >= LOAD_TIME_SECONDS) {
-                    // 1. Retract the loader
-                    servoInitialize.setLoader(LOADER_HOME_POSITION);
-                    // 2.  back to IDLE. The cycle is complete!
-                    currentState = ShootingCycleState.IDLE;
-                }
-                break;
-        }
 
         // This is still crucial for detecting a *new* button press
         aButtonPreviouslyPressed = aButtonPressed;
