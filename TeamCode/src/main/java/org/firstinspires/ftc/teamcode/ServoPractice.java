@@ -4,11 +4,11 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 
-import org.firstinspires.ftc.teamcode.mechanisms.ServoInitialize;
+import org.firstinspires.ftc.teamcode.mechanisms.ServoInitializeOriginal;
 
 @TeleOp
 public class ServoPractice extends OpMode {
-    ServoInitialize initialize = new ServoInitialize();
+    ServoInitializeOriginal initialize = new ServoInitializeOriginal();
 
     public void init(){
         initialize.init(hardwareMap);

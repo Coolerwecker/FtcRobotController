@@ -7,12 +7,12 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime; // We still use this timer
 
 import org.firstinspires.ftc.teamcode.mechanisms.MotorInitialize;
-import org.firstinspires.ftc.teamcode.mechanisms.ServoInitialize;
+import org.firstinspires.ftc.teamcode.mechanisms.ServoInitializeOriginal;
 
         @TeleOp
         public class Test extends OpMode {
             MotorInitialize motorInitialize = new MotorInitialize();
-            ServoInitialize servoInitialize = new ServoInitialize();
+            ServoInitializeOriginal servoInitialize = new ServoInitializeOriginal();
 
             // --- UPDATED --- Pusher Servo positions
             public static final double PUSHER_HOME_POSITION = 0.2; // Retracted
