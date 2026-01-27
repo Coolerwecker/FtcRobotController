@@ -18,8 +18,9 @@ public class Constants {
             .lateralZeroPowerAcceleration(-53)
             .forwardZeroPowerAcceleration(-32)
             .translationalPIDFCoefficients(new PIDFCoefficients(0.07,0,0.0025,0.025))
-            .headingPIDFCoefficients(new PIDFCoefficients(0.75,0,0.001,0.025));
-
+            .headingPIDFCoefficients(new PIDFCoefficients(0.75,0,0.001,0.025))
+            .drivePIDFCoefficients(new PIDFCoefficients(0.05,0.0,0.0025,0.015))
+            .centripetalScaling(0.009);
         public static MecanumConstants driveConstants = new MecanumConstants()
             .maxPower(1)
             .rightFrontMotorName("frontright")
@@ -50,6 +51,11 @@ public class Constants {
             .IMU_HardwareMapName("imu")
             .IMU_Orientation(new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.FORWARD, RevHubOrientationOnRobot.UsbFacingDirection.RIGHT));
 
+public static PathConstraints pathConstraints=new PathConstraints(
+        0.99,
+        100,
+        1.35,
+        2);
 
     public static Follower createFollower(HardwareMap hardwareMap) {
         return new FollowerBuilder(followerConstants, hardwareMap)
